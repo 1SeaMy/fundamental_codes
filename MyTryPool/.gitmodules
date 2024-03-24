@@ -1,0 +1,3 @@
+[submodule "CVE-2022-22954"]
+	path = CVE-2022-22954
+	url = https://github.com/1SeaMy/CVE-2022-22954.git
