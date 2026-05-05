@@ -7,7 +7,7 @@ Private Sub BuyukHarf()
     Next c
          
 End Sub
-----------------------------------------------------------------------
+' ----------------------------------------------------------------------
 Private Sub Trimle()
     Dim c As Range
     For Each c In ActiveSheet.UsedRange
@@ -17,7 +17,7 @@ Private Sub Trimle()
     Next c
          
 End Sub
-----------------------------------------------------------------------
+' ----------------------------------------------------------------------
 Private Sub tekBosluk()
     Cells.Replace What:="     ", Replacement:=" ", LookAt:=xlPart, SearchOrder _
         :=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False
@@ -29,7 +29,7 @@ Private Sub tekBosluk()
         :=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False
          
 End Sub
-----------------------------------------------------------------------
+' ----------------------------------------------------------------------
 Private Sub Trim_le()
     Dim ws As Worksheet
     Dim sonuc As String
@@ -45,7 +45,7 @@ Private Sub Trim_le()
     Next satir
 
 End Sub
-----------------------------------------------------------------------
+' ----------------------------------------------------------------------
 Function RemoveCombiningCharacters(text As String) As String
     Dim i As Integer
     Dim ch As String
@@ -60,8 +60,9 @@ Function RemoveCombiningCharacters(text As String) As String
     Next i
 
     RemoveCombiningCharacters = result
-End Function
 
+End Function
+' ----------------------------------------------------------------------
 Function TurkceToIngilizce(text As String) As String
     text = RemoveCombiningCharacters(text)
 
@@ -92,7 +93,7 @@ Function TurkceToIngilizce(text As String) As String
 
     TurkceToIngilizce = result
 End Function
-----------------------------------------------------------------------
+' ----------------------------------------------------------------------
 Sub KısaltmaOtomatik()
     Dim ws As Worksheet
     Dim kelimeler() As String
