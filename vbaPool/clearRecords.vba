@@ -8,6 +8,16 @@ Private Sub BuyukHarf()
          
 End Sub
 ----------------------------------------------------------------------
+Private Sub Trimle()
+    Dim c As Range
+    For Each c In ActiveSheet.UsedRange
+        If Not IsEmpty(c.Value) Then
+            c.Value = Trim(c.Value)
+        End If
+    Next c
+         
+End Sub
+----------------------------------------------------------------------
 Private Sub tekBosluk()
     Cells.Replace What:="     ", Replacement:=" ", LookAt:=xlPart, SearchOrder _
         :=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False
