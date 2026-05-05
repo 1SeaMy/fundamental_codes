@@ -93,6 +93,17 @@ Function TurkceToIngilizce(text As String) As String
 
     TurkceToIngilizce = result
 End Function
+
+Sub TurkceKarakterleriDonustur()
+    Dim c As Range
+    
+    For Each c In ActiveSheet.UsedRange
+        If Not IsEmpty(c.Value) Then
+            c.Value = TurkceToIngilizce(CStr(c.Value))
+        End If
+    Next c
+End Sub
+
 ' ----------------------------------------------------------------------
 Sub KısaltmaOtomatik()
     Dim ws As Worksheet
