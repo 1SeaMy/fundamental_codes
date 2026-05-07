@@ -8,6 +8,61 @@ Private Sub BuyukHarf()
          
 End Sub
 ' ----------------------------------------------------------------------
+Private Sub CommandButton1_Click()
+Sub TumHarfleriBuyukYap()
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim rng As Range
+
+    Application.ScreenUpdating = False
+
+    For Each ws In ThisWorkbook.Worksheets
+        On Error Resume Next
+        Set rng = ws.UsedRange.SpecialCells(xlCellTypeConstants, xlTextValues)
+        On Error GoTo 0
+
+        If Not rng Is Nothing Then
+            For Each cell In rng
+                If VarType(cell.Value) = vbString Then
+                    cell.Value = UCase(cell.Value)
+                End If
+            Next cell
+        End If
+        Set rng = Nothing
+    Next ws
+
+    Application.ScreenUpdating = True
+    MsgBox "Tüm hücrelerdeki metinler büyük harfe dönüştürüldü.", vbInformation
+End Sub
+' ----------------------------------------------------------------------
+Sub EnterKarakterleriniBosluklaDegistir()
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim rng As Range
+
+    Application.ScreenUpdating = False
+
+    For Each ws In ThisWorkbook.Worksheets
+        On Error Resume Next
+        Set rng = ws.UsedRange.SpecialCells(xlCellTypeConstants, xlTextValues)
+        On Error GoTo 0
+
+        If Not rng Is Nothing Then
+            For Each cell In rng
+                If VarType(cell.Value) = vbString Then
+                    cell.Value = Replace(cell.Value, vbLf, " ")
+                    cell.Value = Replace(cell.Value, vbCr, " ")
+                End If
+            Next cell
+        End If
+        Set rng = Nothing
+    Next ws
+
+    Application.ScreenUpdating = True
+    MsgBox "Tüm Enter karakterleri boşlukla değiştirildi.", vbInformation
+End Sub
+' ----------------------------------------------------------------------
+
 Private Sub Trimle()
     Dim c As Range
     For Each c In ActiveSheet.UsedRange
@@ -104,6 +159,50 @@ Sub TurkceKarakterleriDonustur()
     Next c
 End Sub
 
+' ----------------------------------------------------------------------
+Sub BuyukTurkceKarakterleriDonustur_Dizisiz()
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim rng As Range
+    Dim metin As String
+
+    Application.ScreenUpdating = False
+
+    For Each ws In ThisWorkbook.Worksheets
+        On Error Resume Next
+        Set rng = ws.UsedRange.SpecialCells(xlCellTypeConstants, xlTextValues)
+        On Error GoTo 0
+
+        If Not rng Is Nothing Then
+            For Each cell In rng
+                If VarType(cell.Value) = vbString Then
+                    metin = cell.Value
+                    metin = Replace(metin, "İ", "I")
+                    metin = Replace(metin, "Ü", "U")
+                    metin = Replace(metin, "Ğ", "G")
+                    metin = Replace(metin, "Ş", "S")
+                    metin = Replace(metin, "Ö", "O")
+                    metin = Replace(metin, "Ç", "C")
+                    cell.Value = metin
+                End If
+            Next cell
+        End If
+        Set rng = Nothing
+    Next ws
+
+    Application.ScreenUpdating = True
+    MsgBox "Büyük Türkçe karakterler başarıyla dönüştürüldü.", vbInformation
+End Sub
+' ----------------------------------------------------------------------
+Private Sub CommandButton1_Click()
+
+' pdfKaydet Makro
+' Dökümanda yazdırma alanındaki kısımları masa üstüne aktif sayfa ismi ile pdf kaydeder
+On Error Resume Next
+ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
+"C:\Users\Deniz\Desktop\" & ActiveSheet.Name
+
+End Sub
 ' ----------------------------------------------------------------------
 Sub KısaltmaOtomatik()
     Dim ws As Worksheet
